@@ -16,6 +16,9 @@ import snowflake.snowpark.functions as F
 
 
 def create_pos_view(session):
+
+    db_sql = "USE database HOL_DB"
+    _ = session.sql(db_sql).collect()
     session.use_schema('HARMONIZED')
     order_detail = session.table("RAW_POS.ORDER_DETAIL").select(F.col("ORDER_DETAIL_ID"), \
                                                                 F.col("LINE_NUMBER"), \
